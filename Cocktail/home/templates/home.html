@@ -1,0 +1,275 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="{% static 'css/cocktail.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/owl.carousel.min.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/owl.theme.default.min.css' %}" />
+    <title>Document</title>
+  </head>
+  <body>
+    <!-- start of the cocktail recepies -->
+    <div class="container-fluid d-flex flex-column padd margBot" id="cRecepies">
+      <h2>Cocktail recipes</h2>
+      <p>
+        No matter the occasion or time of day, we have a cocktail to suggest. Discover our cocktail recipes that are easy to make at home with accessible
+        alcohols and ingredients.
+      </p>
+      <div class="aw-120">
+        <a class="linkStyle" href="">View all recepies</a>
+      </div>
+    </div>
+    <!-- end of the cocktail recepies -->
+    <!-- start of the owl carousel for random items -->
+    <div class="containter-fluid padd margBot">
+      <div class="row">
+        <div class="col-12">
+          <div class="owl-carousel owl-theme">
+            <div class="owlDiv text-center">
+              <div class="card">
+                <img class="card-img" src="../../static/media/old fashioned whiskey.jpg" alt="Card image" />
+                <div class="card-img-overlay d-flex flex-column justify-content-between align-items-center">
+                  <h5 class="card-text text-white">Card title</h5>
+                  <h2 class="card-text text-white">Last updated 3 mins ago</h2>
+                  <div class="text-center aw-90">
+                    <a href="" class="linkStyle">Learn more</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="owlDiv text-center">
+              <div class="card">
+                <img class="card-img" src="../../static/media/brands/gucci.png" alt="Card image" />
+                <div class="card-img-overlay">
+                  <h5 class="card-title">Card title</h5>
+                  <p class="card-text">Last updated 3 mins ago</p>
+                </div>
+              </div>
+            </div>
+            <div class="owlDiv text-center">
+              <div class="card">
+                <img class="card-img" src="../../static/media/brands/addidas.png" alt="Card image" />
+                <div class="card-img-overlay">
+                  <h5 class="card-title">Card title</h5>
+                  <p class="card-text">Last updated 3 mins ago</p>
+                </div>
+              </div>
+            </div>
+            <div class="owlDiv text-center">
+              <div class="card">
+                <img class="card-img" src="../../static/media/brands/addidas.png" alt="Card image" />
+                <div class="card-img-overlay">
+                  <h5 class="card-title">Card title</h5>
+                  <p class="card-text">Last updated 3 mins ago</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- end of the owl carousel for random items -->
+    <!-- start of the food section -->
+    <div class="container-fluid margBot">
+      <div class="card foodCard">
+        <img class="card-img foodCard" src="../../static/media/brands/food.jpg" alt="Card image" />
+        <div class="card-img-overlay d-flex flex-row justify-content-between align-items-end">
+          <h2 class="card-text text-white">Last updated 3 mins ago</h2>
+          <div class="text-center aw-90">
+            <a href="" class="linkStyle">Learn more</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- end of the food section -->
+    <!-- start of the book secton -->
+    <div class="container margBot">
+      <div class="row">
+        <div class="col-12 col-lg-6 d-flex flex-column justify-content-end bookDesc">
+          <div>
+            <div class="aw-110">
+              <a href="" class="linkStyle">BUY THE BOOK</a>
+            </div>
+            <h2>L'Apéro au Québec</h2>
+            <p>
+              First book of cocktail recipes featuring only Quebeck spirits (more than fifty!). You will find 55 local and seasonal cocktails in addition to 14
+              reports featuring passionate artisans from across the province
+            </p>
+            <div class="aw-100">
+              <a href="" class="linkStyle">Find out more</a>
+            </div>
+          </div>
+        </div>
+        <div class="col-12 col-lg-6 d-flex flex-row justify-content-center align-items-center bookImg">
+          <img src="../../static/media/Group-522.jpg" alt="book"/>
+        </div>
+      </div>
+    </div>
+    <!-- end of the book section -->
+    <!-- start of the alcohol free section -->
+    <div class="container-fluid margBot padd">
+      <div class="row">
+        <div class="col-6 alcoholFreeInfo">
+          <div class="alcoholFreeInfo1">
+            <div class="afiSpace aw-120">
+              <a href="" class="linkStyle">Featured Feature</a>
+            </div>
+            <hr />
+            <h2 class="afiSpace">The best Quebec alcohol-free gins and why</h2>
+          </div>
+          <div class="alcoholFreeInfo2">
+            <p class="afiSpace">Alcohol-free spirits are popular in Quebec and elsewhere in the world!</p>
+            <div class="afiSpace aw-110">
+              <a href="" class="linkStyle"> See everything </a>
+            </div>
+          </div>
+        </div>
+        <div class="col-6 alcoholFreeImg">
+          <img src="../../static/media/alcohol free 2.jpg" alt="..." />
+        </div>
+      </div>
+    </div>
+    <!-- end of the alcohol free section -->
+    <!-- start of articles section -->
+    <div class="container-fluid padd margBot">
+      <div class="row">
+        <div class="col-12 articleTitle">
+          <h2 class="text-center">All hot, but above all very cold: our latest artcles</h2>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-3 articlesWidth">
+          <div class="articles d-flex flex-column align-items-center">
+            <img src="../../static/media/alcohol free.jpg" alt="test" />
+            <h5 class="text-center">Quebec's best alcohol-free beers</h5>
+            <div class="text-center aw-100">
+              <a href="" class="linkStyle">Find out more</a>
+            </div>
+            <hr />
+          </div>
+        </div>
+        <div class="col-3 articlesWidth">
+          <div class="articles d-flex flex-column align-items-center">
+            <img src="../../static/media/alcohol free.jpg" alt="test" />
+            <h5 class="text-center">Quebec's best alcohol-free beers</h5>
+            <div class="text-center aw-100">
+              <a href="" class="linkStyle">Find out more</a>
+            </div>
+            <hr />
+          </div>
+        </div>
+        <div class="col-3 articlesWidth">
+          <div class="articles d-flex flex-column align-items-center">
+            <img src="../../static/media/alcohol free.jpg" alt="test" />
+            <h5 class="text-center">Quebec's best alcohol-free beers</h5>
+            <div class="text-center aw-100">
+              <a href="" class="linkStyle">Find out more</a>
+            </div>
+            <hr />
+          </div>
+        </div>
+        <div class="col-3 articlesWidth2 d-flex flex-column align-items-center justify-content-center">
+          <div class="aw-110">
+            <a href="" class="linkStyle">View all articles</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- end of articles section -->
+    <!-- start of the video secton -->
+    <div class="container-fluid margBot">
+      <div class="row">
+        <div class="col-12 d-flex flex-column align-items-center videoSec1 px-0">
+          <div class="d-flex videoLinks">
+            <div class="aw-60">
+              <a href="" class="linkStyle2">Youtube</a>
+            </div>
+            <div class="aw-40">
+              <a href="" class="linkStyle2">IGTV</a>
+            </div>
+            <div class="aw-120">
+              <a href="" class="linkStyle2">Facebook Watch</a>
+            </div>
+          </div>
+          <h2>Videos</h2>
+          <p class="text-center aw-550">
+            Master the art of cocktails with our video content. Discover our best recipes, our pro tips, our impressions of new products and savor privileged
+            encounters with the craftsmen who make us vibrate.
+          </p>
+          <div class="aw-170">
+            <a href="" class="linkStyle2">To drink it all (oops see)</a>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-12 px-0">
+          <iframe
+            width="100%"
+            height="600px"
+            src="https://www.youtube.com/embed/4TwFl6e2R6A"
+            title="YouTube video player"
+            frameborder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            allowfullscreen
+          ></iframe>
+        </div>
+      </div>
+      <div class="row videoSec3 px-0">
+        <div class="col-4 px-0 videosec3-1">
+          <div class="row d-flex flex-column justify-content-around">
+            <div class="col-12">
+              <h2 class="text-light">Signed web series 1 or 2 Cocktails</h2>
+            </div>
+            <div class="col-12">
+              <p class="text-light">
+                Be inspired by our web series, ranging from tutorial capsules to documentaries, 1 or 2 Cocktails offers you fresh digital content to watch and
+                review.
+              </p>
+              <div class="aw-170">
+                <a href="" class="linkStyle2">To drink it all (oops see)</a>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-4 px-0">
+          <img src="../../static/media/old fashioned whiskey.jpg" alt="" />
+        </div>
+        <div class="col-4 px-0">
+          <img src="../../static/media/Cocktail martini.jpg" alt="" />
+        </div>
+      </div>
+    </div>
+    <!-- end of the video section -->
+    <!-- start of the subscribe section -->
+    <div class="container-fluid padd margBot" id="subscribeSec">
+      <div class="row">
+        <div class="col-12 col-lg-6">
+          <div class="card">
+            <img src="../../static/media/subscribe.jpg" class="card-img" alt="subscribe" />
+            <div class="card-img-overlay d-flex flex-column justify-content-center align-items-center">
+              <h2 class="card-title text-light">Join the newsletter</h2>
+            </div>
+          </div>
+        </div>
+        <div class="col-12 col-lg-6 d-flex flex-column justify-content-center" id="subscribeInput">
+          <div>
+            <p>Why? To stay on the lookout for our new recipes and discover new Quebec alcohols first.</p>
+            <input type="email" placeholder="Your email" size="30"/>
+            <div class="aw-70">
+              <a href="" class="linkStyle">Subscribe</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- end of the subscribe section -->
+    <script src="{% static 'js/jquery-3.6.1.min.js' %}"></script>
+    <script src="{% static 'js/owl.carousel.js' %}"></script>
+    <script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
+    <script src="{% static 'js/cocktail.js' %}"></script>
+  </body>
+</html>

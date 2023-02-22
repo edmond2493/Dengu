@@ -1,0 +1,478 @@
+* {
+  font-family: "Permanent Marker", cursive;
+}
+
+.noFont {
+  font-family: none;
+}
+/* start of navbar style */
+#navbar1 {
+  padding-top: 10px;
+  padding-bottom: 10px;
+  box-shadow: rgb(38, 57, 77) 0px 20px 30px -10px;
+}
+
+.topmenuItem,
+.btn-outline-primary,
+.footer-link,
+.btn-outline-primary {
+  /* color: rgb(0, 0, 0); */
+  /* mix-blend-mode: difference; */
+  mix-blend-mode: color-burn;
+}
+
+.topmenu {
+  margin: 0 20px;
+}
+/*********************************************************************************************/
+/* start of first carousel slideshow */
+#firstCarouselinner,
+#firstCarouselinner img {
+  height: 600px;
+  width: 100%;
+  margin-top: 28px;
+  object-fit: cover;
+  box-shadow: rgb(38, 57, 77) 0px 20px 30px -10px;
+}
+/**********************************************************************************************/
+/* start of season change buttons */
+#seasons {
+  padding: 0 20px;
+  margin: 20px 0;
+}
+.seasonCol {
+  margin: 8px 0;
+}
+
+.spring-title,
+.summer-title,
+.autumn-title,
+.winter-title,
+.categoryCard h5 {
+  font-size: 40px;
+  font-weight: 600;
+}
+
+.spring-title {
+  color: #0c79ac;
+}
+.summer-title {
+  color: #67d80a;
+}
+.autumn-title {
+  color: #910000;
+}
+
+.winter-title {
+  color: #7d11d4;
+}
+
+.spring-title,
+.summer-title,
+.autumn-title,
+.winter-title {
+  mix-blend-mode: multiply;
+}
+
+/***********************************************************************************************/
+/* cards style */
+img,
+.card {
+  cursor: pointer;
+  transition: transform 0.3s;
+}
+
+.card:hover {
+  transform: scale(1.08);
+}
+
+.cartCard:hover {
+  transform: scale(1);
+  cursor: auto;
+}
+
+.itemsCard {
+  box-shadow: rgb(38 57 77) 0px 20px 30px -10px;
+}
+
+.itemsCard > a > img {
+  width: 100%;
+  height: 10vw;
+  object-fit: cover;
+}
+
+.card:hover .hide {
+  display: block;
+}
+
+/* SEASONS ICONS */
+/* spring icon */
+.fa-envira {
+  color: rgb(35, 223, 28);
+}
+
+/* summer icon */
+.fa-sun {
+  color: #c7d40b;
+}
+
+/* autumn icon */
+.fa-canadian-maple-leaf {
+  color: rgb(196, 123, 14);
+}
+
+/* winter icon */
+.fa-snowflake {
+  color: #38bde6;
+}
+/*************************************************************************************/
+/* men, woman, kids sections */
+.sectionDiv {
+  height: 600px;
+  margin: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.sectionDiv2 {
+  height: 600px;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.sectionDiv2 img {
+  height: 200px;
+  object-fit: cover;
+  box-shadow: rgb(38, 57, 77) 0px 20px 30px -10px;
+}
+
+.categoryCard {
+  margin: 7px 0 60px 0;
+}
+
+#womenSection,
+#menSection,
+#kidsSection {
+  padding: 0 25px;
+  margin: 0 0 30px 0;
+}
+.personCarousel {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: rgb(38, 57, 77) 0px 20px 30px -10px;
+}
+.personCarousel .carousel-inner img {
+  height: 600px;
+  object-fit: cover;
+}
+
+.personCarousel,
+.personCarousel .carousel-inner {
+  border-radius: 20px;
+}
+/************************************************************************************/
+
+.orderItem {
+  display: flex;
+  width: 100%;
+  flex-direction: row;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+.orderItem *,
+.passFont * {
+  font-family: none;
+}
+
+#cartCount {
+  width: 23px;
+  height: 23px;
+  border-radius: 50%;
+  color: rgb(255, 255, 255);
+  text-align: center;
+  background: rgb(207, 50, 50)
+}
+
+.hide {
+  display: none;
+}
+
+/* .dropdown:hover .dropdown-menu {
+  display: block;
+  margin-top: 0;
+} */
+
+.card-img-overlay {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+/* .card-title {
+  font-size: 40px;
+  font-family: "Courier New", Courier, monospace;
+  font-weight: 600;
+  background: -webkit-linear-gradient(rgb(20, 243, 31), rgb(51, 15, 15));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+} */
+
+.loginInput {
+  display: grid;
+  justify-content: center;
+}
+
+.loginInput * {
+  margin-bottom: 15px;
+}
+
+#itemsContainer {
+  margin-top: 70px;
+}
+#itemsContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+#singleItem {
+  margin-bottom: 15px;
+}
+
+#itemsContainer > div {
+  width: 100%;
+}
+
+#itemsImage img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 15px;
+  box-shadow: rgb(38 57 77) 0px 20px 30px -10px;
+}
+
+.itemsIcon {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+
+.itemsIcon2 {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+.itemsIcon2 * {
+  margin: 0 5px;
+}
+
+#itemsDescription {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: space-between;
+  margin-bottom: 15px;
+}
+.itemsDescriptionElement {
+  margin-bottom: 40px;
+}
+
+.pName {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font-size: medium;
+}
+
+#addToChart button {
+  margin-right: 10px;
+}
+
+.paginatorCol {
+  margin-top: 20px;
+  display: flex;
+  justify-content: center;
+}
+
+#salesSection,
+#brandSection,
+#itemsSection {
+  height: 250px;
+  margin: 0 20px 30px 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.owlDiv {
+  height: 200px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin: 0 4px;
+}
+
+.owlDiv img {
+  object-fit: cover;
+  height: 100%;
+  width: 100%;
+}
+
+#footer {
+  margin-top: 90px;
+}
+#profile-btn {
+  height: 800px;
+  min-height: 100%;
+}
+.box {
+  position: relative;
+  max-width: 600px;
+  width: 98%;
+  height: 200px;
+  background: #fff;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+}
+
+/* common */
+.ribbon {
+  width: 150px;
+  height: 150px;
+  overflow: hidden;
+  position: absolute;
+}
+.ribbon::before,
+.ribbon::after {
+  position: absolute;
+  z-index: -1;
+  content: "";
+  display: block;
+  border: 5px solid #2980b9;
+}
+.ribbon span {
+  position: absolute;
+  display: block;
+  width: 225px;
+  padding: 15px 0;
+  background-color: #3498db;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+  color: #fff;
+  font: 700 18px/1 "Lato", sans-serif;
+  text-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
+  text-transform: uppercase;
+  text-align: center;
+}
+
+/* top left*/
+.ribbon-top-left {
+  top: -10px;
+  left: px;
+}
+.ribbon-top-left::before,
+.ribbon-top-left::after {
+  border-top-color: transparent;
+  border-left-color: transparent;
+}
+.ribbon-top-left::before {
+  top: 0;
+  right: 0;
+}
+.ribbon-top-left::after {
+  bottom: 0;
+  left: 0;
+}
+.ribbon-top-left span {
+  right: -25px;
+  top: 30px;
+  transform: rotate(-45deg);
+}
+
+@media screen and (max-width: 963px) {
+  .personCarousel .carousel-inner img {
+    height: 300px;
+  }
+  .card-title {
+    font-size: 15px;
+  }
+  .sectionDiv,
+  .sectionDiv2 {
+    height: 300px;
+    margin-bottom: 5px;
+  }
+  .sectionDiv2 img {
+    height: 100px;
+    object-fit: cover;
+  }
+
+  .sectionDiv2 div {
+    margin: 3px 0;
+  }
+  .firstRow {
+    margin: 10px;
+  }
+  #salesSection,
+  #brandSection,
+  #itemsSection {
+    height: 130px;
+  }
+  .owlDiv {
+    height: 94px;
+  }
+  #firstCarouselinner,
+  #firstCarouselinner img {
+    height: 400px;
+  }
+  .itemsCard > a > img {
+    width: 100%;
+    height: 20vw;
+    object-fit: cover;
+  }
+  .itemsCard > div > a {
+    font-size: 10px;
+  }
+  #itemsImage img {
+    height: 300px;
+    margin-bottom: 20px;
+  }
+  #sidebar {
+    display: none;
+  }
+  #singleItem {
+    box-shadow: rgb(38, 57, 77) 0px 10px 30px -10px;
+  }
+  .itemsDescriptionElement {
+    margin-bottom: 20px;
+  }
+  .itemsIcon {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+  }
+  .d-flex {
+    flex-direction: column;
+  }
+  #transactionID,
+  #date {
+    display: none;
+  }
+  .spring-title,
+  .summer-title,
+  .autumn-title,
+  .winter-title,
+  .categoryCard h5 {
+    font-size: 20px;
+  }
+}
+@media screen and (max-width: 1155px) {
+  #profile-btn {
+    height: 300px;
+  }
+}

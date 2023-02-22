@@ -1,0 +1,247 @@
+{% extends 'index.html' %} {% load static %} {% block content %}
+<!-- start of single item -->
+<p id="currentSeason">{{ single_item.product_season }}</p>
+<section class="h-100 h-custom" style="margin-top: 70px">
+  <div class="container py-5 h-100">
+    {% if user.is_authenticated %}
+    <div class="row d-flex justify-content-center align-items-center h-100">
+      <div class="col">
+        <div class="card cartCard" id="cartid">
+          <div class="card-body p-4">
+            <div class="row">
+              <div class="col-lg-7">
+                <div class="d-flex justify-content-between align-items-center mb-4">
+                  <div>
+                    <h3 class="mb-1">Shopping cart</h3>
+                    <p class="mb-0 noFont">You have <span class="noFont" id="cartTotal">{{ order.get_cart_items }}</span> items in your cart</p>
+                  </div>
+                  {% if order.get_cart_items == 0 %}
+                  <div>
+                    <a href="{% url 'home' %}" class="btn btn-outline-primary">Explore</a>
+                  </div>
+                  {% endif %}
+                </div>
+                {% for item in cart_items %}
+                <div class="card mb-3  cart-items">
+                  <div class="card-body">
+                    <div class="d-flex justify-content-between">
+                      <a href="../item/{{item.product.product_id}}" style="text-decoration: none">
+                        <div class="d-flex flex-row align-items-center">
+                          <div>
+                            <img src="{{item.product.product_image.url}}" class="img-fluid rounded-3" alt="Shopping item" style="width: 65px" />
+                          </div>
+                          <div class="ms-3">
+                            <h5>{{ item.product.product_name }}</h5>
+                            <p class="small mb-0 noFont cart-item-season" style="text-transform: lowercase">{{ item.product.product_season }}, {{ item.product.product_type }}, {{ item.product.product_gender }}</p>
+                            {% if item.product.product_season == 'SPRING' %}
+                            <i class="fa-brands fa-envira"></i>
+                            {% elif item.product.product_season == 'SUMMER' %}
+                            <i class="fa-solid fa-sun"></i>
+                            {% elif item.product.product_season == 'AUTUMN' %}
+                            <i class="fa-brands fa-canadian-maple-leaf"></i>
+                            {% elif item.product.product_season == 'WINTER' %}
+                            <i class="fa-regular fa-snowflake"></i>
+                            {% endif %}
+                          </div>
+                        </div>
+                      </a>
+                      <div class="d-flex flex-row align-items-center">
+                        <div style="width: 30px">
+                          <h5 class="fw-normal mb-0 noFont product_id" data-product="{{item.product.product_id}}" id="{{item.product.product_id}}">{{ item.quantity }}</h5>
+                        </div>
+                        <div style="width: 30px; display: flex; flex-direction: column">
+                          <i class="fa-solid fa-caret-up update-cart" data-product="{{item.product.product_id}}" data-action="add" style="cursor: pointer"></i>
+                          <i class="fa-solid fa-caret-down update-cart" data-product="{{item.product.product_id}}" data-action="remove" style="cursor: pointer"></i>
+                        </div>
+                        <div style="width: 60px">
+                          <h5 class="mb-0 pName">Price</h5>
+                          <h5 class="mb-0 pName noFont">${{ item.product.product_price}}</h5>
+                        </div>
+                        <div style="width: 60px">
+                          <h5 class="mb-0 pName">Total</h5>
+                          <h5 class="mb-0 pName noFont" id="{{item.product.product_id}}SUM">$ {{ item.get_total}}</h5>
+                        </div>
+                        <i class="fas fa-trash-alt" data-product="{{item.product.product_id}}" data-action="remove" style="cursor: pointer"></i>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                {% endfor %}
+              </div>
+              <div class="col-lg-5">
+                <div class="card cartCard bg-primary text-white rounded-3">
+                  <div class="card-body">
+                    <div class="d-flex justify-content-between align-items-center mb-4">
+                      <h5 class="mb-0 noFont">Card details</h5>
+                      <h3 style="text-transform: capitalize">{{ user }}</h3>
+                    </div>
+                    <!-- <p class="mb-2 noFont">Card type</p>
+                    <a href="#!" type="submit" class="text-white"><i class="fab fa-cc-mastercard fa-2x me-2"></i></a>
+                    <a href="#!" type="submit" class="text-white"><i class="fab fa-cc-visa fa-2x me-2"></i></a>
+                    <a href="#!" type="submit" class="text-white"><i class="fab fa-cc-amex fa-2x me-2"></i></a>
+                    <a href="#!" type="submit" class="text-white"><i class="fab fa-cc-paypal fa-2x"></i></a> -->
+                    <form class="mt-4" id="cartForm" onsubmit="submitCheckout()">
+                      <div class="form-outline form-white mb-4">
+                        <input type="text" id="CCname" class="form-control form-control-lg noFont" siez="17" placeholder="Cardholder's Name" maxlength="50" required="required" />
+                        <label class="form-labe noFont" for="CCname">Cardholder's Name</label>
+                      </div>
+
+                      <div class="form-outline form-white mb-4">
+                        <input
+                          type="text"
+                          id="CCnumber"
+                          class="form-control form-control-lg noFont"
+                          siez="17"
+                          placeholder="1234 5678 9012 3457"
+                          minlength="19"
+                          maxlength="19"
+                          required="required"
+                          onkeypress="return (event.charCode !=8 && event.charCode ==0 || (event.charCode == 32 || (event.charCode >= 48 && event.charCode <= 57)))"
+                          onkeyup="regexCCnumber()"
+                        />
+                        <label class="form-label noFont" for="CCnumber">Card Number</label>
+                      </div>
+
+                      <div class="row mb-4">
+                        <div class="col-md-4">
+                          <div class="form-outline form-white">
+                            <input
+                              type="text"
+                              id="CCmonth"
+                              class="form-control form-control-lg noFont"
+                              placeholder="MM"
+                              size="7"
+                              id="exp"
+                              minlength="2"
+                              maxlength="2"
+                              required="required"
+                              onkeypress="return (event.charCode !=8 && event.charCode ==0 || (event.charCode >= 48 && event.charCode <= 57))"
+                            />
+                            <label class="form-label noFont" for="CCmonth">Month</label>
+                          </div>
+                        </div>
+                        <div class="col-md-4">
+                          <div class="form-outline form-white">
+                            <input
+                              type="text"
+                              id="CCyear"
+                              class="form-control form-control-lg noFont"
+                              placeholder="YYYY"
+                              size="7"
+                              id="exp"
+                              minlength="4"
+                              maxlength="4"
+                              required="required"
+                              onkeypress="return (event.charCode !=8 && event.charCode ==0 || (event.charCode >= 48 && event.charCode <= 57))"
+                            />
+                            <label class="form-label noFont" for="CCyear">Year</label>
+                          </div>
+                        </div>
+                        <div class="col-md-4">
+                          <div class="form-outline form-white">
+                            <input
+                              type="password"
+                              id="CCcvv"
+                              class="form-control form-control-lg"
+                              placeholder="&#9679;&#9679;&#9679;"
+                              size="1"
+                              minlength="3"
+                              maxlength="3"
+                              required="required"
+                              onkeypress="return (event.charCode !=8 && event.charCode ==0 || (event.charCode >= 48 && event.charCode <= 57))"
+                            />
+                            <label class="form-label noFont" for="CCcvv">Cvv</label>
+                          </div>
+                        </div>
+                      </div>
+                      <hr class="my-4" />
+                      <div class="d-flex justify-content-between align-items-center mb-4">
+                        <h5 class="mb-0 noFont">Shipping</h5>
+                      </div>
+                      <div class="row mb-4">
+                        <div class="col-md-6">
+                          <div class="form-outline form-white">
+                            <input type="text" id="SHIPname" class="form-control form-control-lg form-label noFont" placeholder="Name" size="7" maxlength="50" required="required" />
+                          </div>
+                        </div>
+                        <div class="col-md-6">
+                          <div class="form-outline form-white">
+                            <input type="text" id="SHIPlast" class="form-control form-control-lg noFont" placeholder="Last name" size="7" maxlength="100" required="required" />
+                          </div>
+                        </div>
+                      </div>
+                      <div class="row mb-4">
+                        <div class="col-md-6">
+                          <div class="form-outline form-white">
+                            <input type="text" id="SHIPphone" class="form-control form-control-lg form-label noFont" placeholder="Phone number" size="7" maxlength="50" required="required" />
+                          </div>
+                        </div>
+                        <div class="col-md-6">
+                          <div class="form-outline form-white">
+                            <input type="email" id="SHIPemail" class="form-control form-control-lg noFont" placeholder="Email" size="7" maxlength="100" required="required" />
+                          </div>
+                        </div>
+                      </div>
+                      <div class="row mb-4">
+                        <div class="col-md-6">
+                          <div class="form-outline form-white">
+                            <input type="text" id="SHIPcountry" class="form-control form-control-lg form-label noFont" placeholder="Country" size="7" maxlength="50" required="required" />
+                          </div>
+                        </div>
+                        <div class="col-md-6">
+                          <div class="form-outline form-white">
+                            <input type="text" id="SHIPcity" class="form-control form-control-lg noFont" placeholder="City" size="7" maxlength="100" required="required" />
+                          </div>
+                        </div>
+                      </div>
+                      <div class="row mb-4">
+                        <div class="col-md-6">
+                          <div class="form-outline form-white">
+                            <input type="text" id="SHIPstreet" class="form-control form-control-lg form-label noFont" placeholder="Street" size="7" maxlength="50" required="required" />
+                          </div>
+                        </div>
+                        <div class="col-md-6">
+                          <div class="form-outline form-white">
+                            <input type="text" id="SHIPzip" class="form-control form-control-lg noFont" placeholder="ZIP Code" size="7" maxlength="100" required="required" />
+                          </div>
+                        </div>
+                      </div>
+
+                      <hr class="my-4" />
+                      <div class="d-flex justify-content-between mb-4">
+                        <p class="mb-2 noFont">Total(Incl. taxes)</p>
+                        <p class="mb-2 noFont">$ <span class="noFont" id="cartSum">{{ order.get_cart_total }}</span></p>
+                      </div>
+                      {% if order.get_cart_items > 0 %}
+                      <button type="submit" class="btn btn-info btn-block btn-lg" id="checkoutButton">
+                        <div class="d-flex justify-content-between">
+                          <!-- <a href="/checkout"><span onclick="checkOut()">Checkout <i class="fas fa-long-arrow-alt-right ms-2"></i></span></a> -->
+                          <span>Checkout <i class="fas fa-long-arrow-alt-right ms-2"></i></span>
+                        </div>
+                      </button>
+                      {% endif %}
+                    </form>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    {% else %}
+    <a href="{% url 'login_user' %}" style="text-align: center; text-decoration: none">
+      <div class="row d-flex justify-content-center align-items-center h-100">
+        <div class="col">
+          <div class="card">
+            <h2>You need to log in</h2>
+          </div>
+        </div>
+      </div>
+    </a>
+    {% endif %}
+  </div>
+</section>
+
+<!-- end of single item -->
+{% endblock %}

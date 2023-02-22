@@ -1,0 +1,163 @@
+{% extends 'index.html' %} {% load static %} {% block content %}
+<!-- start of single item -->
+<script>
+  
+</script>
+<p id="currentSeason"></p>
+<div class="container-fluid">
+  <div class="row">
+    <!-- start of sidebar -->
+    <!-- <div class="col-3 col-md-3 col-xl-2 px-sm-2 px-0" id="sidebar">
+      <div class="accordion" id="itemAccordion">
+        <div class="accordion-item">
+          <h2 class="accordion-header" id="headingMen">
+            <button
+              class="accordion-button collapsed"
+              type="button"
+              data-bs-toggle="collapse"
+              data-bs-target="#collapseMenMain"
+              aria-expanded="true"
+              aria-controls="collapseMenMain"
+            >
+              Men
+            </button>
+          </h2>
+          <div id="collapseMenMain" class="accordion-collapse collapse" aria-labelledby="headingMen" data-bs-parent="#accordionExample">
+            <div class="accordion-body"></div>
+          </div>
+        </div>
+        <div class="accordion-item">
+          <h2 class="accordion-header" id="headingOne">
+            <button
+              class="accordion-button collapsed"
+              type="button"
+              data-bs-toggle="collapse"
+              data-bs-target="#collapseWoemnMain"
+              aria-expanded="true"
+              aria-controls="collapseWoemnMain"
+            >
+              Women
+            </button>
+          </h2>
+          <div id="collapseWoemnMain" class="accordion-collapse collapse" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+            <div class="accordion-body"></div>
+          </div>
+        </div>
+        <div class="accordion-item">
+          <h2 class="accordion-header" id="headingOne">
+            <button
+              class="accordion-button collapsed"
+              type="button"
+              data-bs-toggle="collapse"
+              data-bs-target="#collapseKidsMain"
+              aria-expanded="true"
+              aria-controls="collapseKidsMain"
+            >
+              Kids
+            </button>
+          </h2>
+          <div id="collapseKidsMain" class="accordion-collapse collapse" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+            <div class="accordion-body"></div>
+          </div>
+        </div>
+        <div class="accordion-item">
+          <h2 class="accordion-header" id="headingOne">
+            <button
+              class="accordion-button collapsed"
+              type="button"
+              data-bs-toggle="collapse"
+              data-bs-target="#collapseBrandsMain"
+              aria-expanded="true"
+              aria-controls="collapseBrandsMain"
+            >
+              Brands
+            </button>
+          </h2>
+          <div id="collapseBrandsMain" class="accordion-collapse collapse" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+            <div class="accordion-body"></div>
+          </div>
+        </div>
+        <div class="accordion-item">
+          <h2 class="accordion-header" id="headingOne">
+            <button
+              class="accordion-button collapsed"
+              type="button"
+              data-bs-toggle="collapse"
+              data-bs-target="#collapseSeasonsMain"
+              aria-expanded="true"
+              aria-controls="collapseSeasonsMain"
+            >
+              Seasons
+            </button>
+          </h2>
+          <div id="collapseSeasonsMain" class="accordion-collapse collapse" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+            <div class="accordion-body"></div>
+          </div>
+        </div>
+      </div>
+    </div> -->
+    <!-- end of sidebar -->
+    <!-- start of item photo and info -->
+    <div class="col-12" id="itemsContainer">
+      <div class="row" style="min-height: 700px;">
+        {% for item in items_gender %}
+        <div class="col-6 col-xl-3" style="margin-bottom: 20px">
+          <div class="card itemsCard">
+            <a href="../../../../item/{{item.product_id}}"><img class="card-img-top" src="{{ item.product_image.url }}" alt="Card image cap" /></a>
+            <div class="card-body itemsIcon">
+              <h5 class="pName">{{ item.product_name }}</h5>
+              <div class="itemsIcon2">
+                <h5 class="pName noFont">${{ item.product_price }}</h5>
+                {% if item.product_season == 'SPRING' %}
+                <i class="fa-brands fa-envira"></i>
+                {% elif item.product_season == 'SUMMER' %}
+                <i class="fa-solid fa-sun"></i>
+                {% elif item.product_season == 'AUTUMN' %}
+                <i class="fa-brands fa-canadian-maple-leaf"></i>
+                {% elif item.product_season == 'WINTER' %}
+                <i class="fa-regular fa-snowflake"></i>
+                {% endif %}
+                {% if user.is_authenticated %}
+                {% if item.product_quantity == 0 %}
+                <i class="fa-solid fa-xmark update-cart" data-product="{{item.product_id}}" data-action="add" style="font-size: larger; color: red;"></i>
+                {% else %}
+                <i class="fa-solid fa-plus update-cart" data-product="{{item.product_id}}" data-action="add" style="font-size: larger"></i>
+                {% endif %}
+                {% endif %}
+              </div>
+            </div>
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+      <div class="row paginatorRow">
+        <div class="col-12 paginatorCol">
+          <nav aria-label="Page navigation example">
+            <ul class="pagination">
+              {% if items_gender.has_previous %}
+              <li class="page-item"><a class="page-link" href="?page=1">&laquo</a></li>
+              <li class="page-item"><a class="page-link" href="?page={{ items_gender.previous_page_number }}">Previous</a></li>
+              {% elif not items_gender.has_previous %}
+              <li class="page-item disabled"><a class="page-link" href="#">&laquo</a></li>
+              <li class="page-item disabled"><a class="page-link" href="#">Previous</a></li>
+              {% endif %}
+              <li class="page-item disabled">
+                <a class="page-link" href="">{{ items_gender.number }} of {{ items_gender.paginator.num_pages }}</a>
+              </li>
+              {% if items_gender.has_next %}
+              <li class="page-item"><a class="page-link" href="?page={{ items_gender.next_page_number }}">Next</a></li>
+              <li class="page-item"><a class="page-link" href="?page={{ items_gender.paginator.num_pages }}">&raquo</a></li>
+              {% elif not items_gender.has_next %}
+              <li class="page-item disabled"><a class="page-link" href="#">Next</a></li>
+              <li class="page-item disabled"><a class="page-link" href="#">&raquo</a></li>
+              {% endif %}
+            </ul>
+          </nav>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- end of single item -->
+{% endblock %}

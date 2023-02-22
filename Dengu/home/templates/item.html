@@ -1,0 +1,209 @@
+{% extends 'index.html' %} 
+{% block title %}{{single_item.product_name}}{% endblock %}
+{% load static %} 
+{% block content %}
+<!-- start of single item -->
+
+<p id="currentSeason">{{ single_item.product_season }}</p>
+<div class="container-fluid">
+  <div class="row">
+    <!-- start of sidebar -->
+    <!-- <div class="col-3 col-md-3 col-xl-2 px-sm-2 px-0" id="sidebar">
+      <div class="accordion" id="itemAccordion">
+        <div class="accordion-item">
+          <h2 class="accordion-header" id="headingMen">
+            <button
+              class="accordion-button collapsed"
+              type="button"
+              data-bs-toggle="collapse"
+              data-bs-target="#collapseMenMain"
+              aria-expanded="true"
+              aria-controls="collapseMenMain"
+            >
+              Men
+            </button>
+          </h2>
+          <div
+            id="collapseMenMain"
+            class="accordion-collapse collapse"
+            aria-labelledby="headingMen"
+            data-bs-parent="#accordionExample"
+          >
+            <div class="accordion-body"></div>
+          </div>
+        </div>
+        <div class="accordion-item">
+          <h2 class="accordion-header" id="headingOne">
+            <button
+              class="accordion-button collapsed"
+              type="button"
+              data-bs-toggle="collapse"
+              data-bs-target="#collapseWoemnMain"
+              aria-expanded="true"
+              aria-controls="collapseWoemnMain"
+            >
+              Women
+            </button>
+          </h2>
+          <div
+            id="collapseWoemnMain"
+            class="accordion-collapse collapse"
+            aria-labelledby="headingOne"
+            data-bs-parent="#accordionExample"
+          >
+            <div class="accordion-body"></div>
+          </div>
+        </div>
+        <div class="accordion-item">
+          <h2 class="accordion-header" id="headingOne">
+            <button
+              class="accordion-button collapsed"
+              type="button"
+              data-bs-toggle="collapse"
+              data-bs-target="#collapseKidsMain"
+              aria-expanded="true"
+              aria-controls="collapseKidsMain"
+            >
+              Kids
+            </button>
+          </h2>
+          <div
+            id="collapseKidsMain"
+            class="accordion-collapse collapse"
+            aria-labelledby="headingOne"
+            data-bs-parent="#accordionExample"
+          >
+            <div class="accordion-body"></div>
+          </div>
+        </div>
+        <div class="accordion-item">
+          <h2 class="accordion-header" id="headingOne">
+            <button
+              class="accordion-button collapsed"
+              type="button"
+              data-bs-toggle="collapse"
+              data-bs-target="#collapseBrandsMain"
+              aria-expanded="true"
+              aria-controls="collapseBrandsMain"
+            >
+              Brands
+            </button>
+          </h2>
+          <div
+            id="collapseBrandsMain"
+            class="accordion-collapse collapse"
+            aria-labelledby="headingOne"
+            data-bs-parent="#accordionExample"
+          >
+            <div class="accordion-body"></div>
+          </div>
+        </div>
+        <div class="accordion-item">
+          <h2 class="accordion-header" id="headingOne">
+            <button
+              class="accordion-button collapsed"
+              type="button"
+              data-bs-toggle="collapse"
+              data-bs-target="#collapseSeasonsMain"
+              aria-expanded="true"
+              aria-controls="collapseSeasonsMain"
+            >
+              Seasons
+            </button>
+          </h2>
+          <div
+            id="collapseSeasonsMain"
+            class="accordion-collapse collapse"
+            aria-labelledby="headingOne"
+            data-bs-parent="#accordionExample"
+          >
+            <div class="accordion-body"></div>
+          </div>
+        </div>
+      </div>
+    </div> -->
+    <!-- end of sidebar -->
+    <!-- start of item photo and info -->
+    <div class="col-12" id="itemsContainer">
+      <div class="row" id="singleItem">
+        <div class="col-12 col-md-8" id="itemsImage">
+          <img src="{{single_item.product_image.url}}" alt="" />
+        </div>
+        <div class="col-12 col-md-4" id="itemsDescription">
+          <div class="row">
+            <div class="col-12">
+              <h3 class="itemsDescriptionElement" style="mix-blend-mode: color-burn;">{{single_item.product_name}}</h3>
+            </div>
+            <div class="col-12">
+              <p class="itemsDescriptionElement"><strong>Price:</strong>  <strong class="noFont">{{single_item.product_price}}$</strong></p>
+            </div>
+            <div class="col-12">
+              <p class="itemsDescriptionElement"  style="text-transform: lowercase; font-family: none;">
+                <b style="text-transform:none;">Category: </b> 
+                {% if single_item.product_season == 'WINTER' %}
+                <a href="../items/{{single_item.product_season}}/product_gender/product_type_id/product_brand_id" class="noFont itemLink" style="color:#f1cb4c; ">{{single_item.product_season}}</a>, 
+                <a href="../items/product_season/{{single_item.product_gender}}/product_type_id/product_brand_id" class="noFont itemLink" style="color:#f1cb4c;">{{single_item.product_gender}}</a>, 
+                <a href="../items/product_season/product_gender/{{single_item.product_type_id}}/product_brand_id" class="noFont itemLink" style="color:#f1cb4c;">{{single_item.product_type}}</a>, 
+                <a href="../items/product_season/product_gender/product_type_id/{{single_item.product_brand_id}}" class="noFont itemLink" style="color:#f1cb4c;">{{single_item.product_brand}}</a>
+                {% else %}
+                <a href="../items/{{single_item.product_season}}/product_gender/product_type_id/product_brand_id" class="noFont itemLink">{{single_item.product_season}}</a>, 
+                <a href="../items/product_season/{{single_item.product_gender}}/product_type_id/product_brand_id" class="noFont itemLink">{{single_item.product_gender}}</a>, 
+                <a href="../items/product_season/product_gender/{{single_item.product_type_id}}/product_brand_id" class="noFont itemLink">{{single_item.product_type}}</a>, 
+                <a href="../items/product_season/product_gender/product_type_id/{{single_item.product_brand_id}}" class="noFont itemLink">{{single_item.product_brand}}</a>
+                {% endif %}
+              </p>
+            </div>
+            <div class="col-12">
+              <p class="noFont">
+                <strong>Available:</strong>
+                {{single_item.product_quantity}}
+              </p>
+            </div>
+            <!-- <div class="col-12">
+              <form class="itemsDescriptionElement">
+                <label for="quantity">Quantity </label>
+                <input type="number" id="quantity" name="quantity" min="1" max="{{single_item.product_quantity}}" />
+              </form>
+            </div> -->
+            <div class="col-12">
+              <p class="noFont">
+                <strong>Descirption:</strong>
+                {{single_item.product_description}}
+              </p>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-12" id="addToChart">
+              {% if user.is_authenticated %}
+              {% if single_item.product_quantity == 0 %}
+              <button type="button" data-product={{single_item.product_id}} data-action="add" class="btn btn-outline-primary update-cart" disabled>Add to chart</button>
+              <button type="button" data-product={{single_item.product_id}} data-action="add" class="btn btn-outline-primary update-cart" disabled><a href="/cart" style="text-decoration: none; color: inherit;">Buy</a></button>
+              {% else %}
+              <button type="button" data-product={{single_item.product_id}} data-action="add" class="btn btn-outline-primary update-cart">Add to chart</button>
+              <button type="button" data-product={{single_item.product_id}} data-action="add" class="btn btn-outline-primary update-cart"><a href="/cart" style="text-decoration: none; color: inherit;">Buy</a></button>
+              {% endif %}
+              {% else %}
+              <a class="btn btn-outline-primary" type="submit" href="{% url 'login_user' %}"> Login </a>
+              {% endif %}
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row" id="itemsSection">
+        <div class="col-12">
+          <div class="owl-carousel owl-theme">
+            {% for similar in similar_item|slice:"10" %}
+            <div class="owlDiv">
+              <a href="../item/{{similar.product_id}}"><img src="{{similar.product_image.url}}" alt="" /></a>
+            </div>
+            {% endfor %}
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- end of item photo and info -->
+  </div>
+</div>
+
+<!-- end of single item -->
+{% endblock %}

@@ -1,0 +1,27 @@
+{% extends 'index.html' %} 
+{% load static %} 
+{% block content %}
+
+{% if form.errors %}
+<div class="container" style="margin-top: 70px">
+  <div class="alert alert-warning alert-dismissible fade show" role="alert">
+    Make sure to create a strong password for your account
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+  </div>
+</div>
+{% endif %}
+<p id="currentSeason">{{ season }}</p>
+<div class="container" style="margin-top: 70px;">
+  <div class="row">
+    <div class="col-12">
+      <h1>Create new user</h1>
+      <form action="{% url 'register_user' %}" method=POST>
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="btn btn-primary">Submit</button>
+      </form>
+    </div>
+  </div>
+</div>
+
+{% endblock %}

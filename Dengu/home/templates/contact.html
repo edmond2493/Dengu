@@ -1,0 +1,26 @@
+{% extends 'index.html' %} {% load static %} {% block content %}
+<p id="currentSeason"></p>
+<div style="margin-top: 100px; height: 700px;">
+  <section class="section_kat">
+    <div class="container px-5">
+      <div class="row justify-content-center">
+        <div class="col-lg-8 col-xl-8 text-center">
+          <h1 class="display-4 fw-bold mb-2" id="message_contact">Contact</h1>
+          <h2 class="mb-5 noFont">Contact me, i might want to hear you</h2>
+        </div>
+      </div>
+    </div>
+  </section>
+  <div class="container px-5 d-flex flex-column align-items-center" style="margin-top: 70px; display: flex">
+    {% if submittet %}
+    <h1 class="mb-5" style="margin-top: 200px;"><strong class="noFont"> Thank you for the contact</strong></h1>
+    {% else %}
+    <form action="" method="POST" class="row g-3 col-12 col-xl-6 d-flex flex-column align-items-center">
+      {% csrf_token %} {{ form.as_p }}
+      <button type="submit" value="submit" class="btn btn-outline-primary col-6 col-xl-3">Submit</button>
+    </form>
+    {% endif %}
+  </div>
+</div>
+
+{% endblock %}

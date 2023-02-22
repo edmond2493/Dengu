@@ -1,0 +1,107 @@
+{% extends 'index.html' %} {% load static %} {% block content %}
+<p id="currentSeason">{{ single_item.product_season }}</p>
+<section class="h-100 h-custom" style="margin-top: 70px">
+  <div class="container py-5 h-100">
+    {% if user.is_authenticated %}
+    <div class="row">
+      <div class="col-12">
+        <div class="card cartCard mb-4">
+          <div class="card-header d-flex justify-content-between py-3">
+            <button class="btn btn-info btn-block btn-lg">
+              <div class="d-flex justify-content-between">
+                <a href="/cart"
+                  ><span><i class="fas fa-long-arrow-alt-left ms-2"></i>Back</span></a
+                >
+              </div>
+            </button>
+            <h5 class="mb-0">Shipping adress</h5>
+          </div>
+          <div class="card-body">
+            <form>
+              <div class="row mb-4">
+                <div class="col">
+                  <div class="form-outline">
+                    <input type="text" id="confirmName" class="form-control noFont" required="required" placeholder="Your name here"/>
+                    <label class="form-label" for="confirmName">First name</label>
+                  </div>
+                </div>
+                <div class="col">
+                  <div class="form-outline">
+                    <input type="text" id="confirmSurname" class="form-control noFont" required="required" placeholder="Your last name here"/>
+                    <label class="form-label" for="confirmSurname">Last name</label>
+                  </div>
+                </div>
+              </div>
+              <div class="row mb-4">
+                <div class="col">
+                  <div class="form-outline">
+                    <input
+                      type="text"
+                      id="confirmPhone"
+                      class="form-control noFont"
+                      required="required"
+                      onkeypress="return (event.charCode !=8 && event.charCode ==0 || (event.charCode == 32 || (event.charCode >= 48 && event.charCode <= 57)))"
+                      placeholder="Your phone number"
+                    />
+                    <label class="form-label" for="confirmPhone"> Phone number</label>
+                  </div>
+                </div>
+                <div class="col">
+                  <div class="form-outline">
+                    <input type="email" id="confirmEmail" class="form-control noFont" required="required" placeholder="Email adress" placeholder="Email adress"/>
+                    <label class="form-label" for="confirmEmail">Email adress</label>
+                  </div>
+                </div>
+              </div>
+              <div class="row mb-4">
+                <div class="col-6 col-lg-3">
+                  <div class="form-outline">
+                    <input type="text" id="confirmCountry" class="form-control noFont" required="required" placeholder="Your country"/>
+                    <label class="form-label" for="confirmCountry">Country</label>
+                  </div>
+                </div>
+                <div class="col-6 col-lg-3">
+                  <div class="form-outline">
+                    <input type="email" id="confirmCity" class="form-control noFont" required="required" placeholder="Your city"/>
+                    <label class="form-label" for="confirmCity">City</label>
+                  </div>
+                </div>
+                <div class="col-8 col-lg-3">
+                  <div class="form-outline">
+                    <input type="email" id="confirmStreet" class="form-control noFont" required="required" placeholder="Street name"/>
+                    <label class="form-label" for="confirmStreet">Street</label>
+                  </div>
+                </div>
+                <div class="col-4 col-lg-3">
+                  <div class="form-outline">
+                    <input type="email" id="confirmZip" class="form-control noFont" required="required" placeholder="ZIP code"/>
+                    <label class="form-label" for="confirmZip">ZIP</label>
+                  </div>
+                </div>
+              </div>
+              <button type="submit" class="btn btn-info btn-block btn-lg">
+                <div class="d-flex justify-content-between">
+                  Confirm<span><i class="fas fa-long-arrow-alt-right ms-2"></i></span>
+                </div>
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+    {% else %}
+    <a href="{% url 'login_user' %}" style="text-align: center; text-decoration: none">
+      <div class="row d-flex justify-content-center align-items-center h-100">
+        <div class="col">
+          <div class="card">
+            <h2>You need to log in</h2>
+          </div>
+        </div>
+      </div>
+    </a>
+    {% endif %}
+  </div>
+</section>
+
+<!-- end of single item -->
+{% endblock %}

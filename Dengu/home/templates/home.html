@@ -1,0 +1,249 @@
+{% extends 'index.html' %} {% load static %} {% block content %}
+<p id="currentSeason">{{ slideshow_images.0.image_season }}</p>
+<!-- start of first slideshow -->
+<div class="container-fluid">
+  <div id="firstCarousel" class="carousel slide carousel-fade" data-bs-ride="carousel">
+    <div class="carousel-inner" id="firstCarouselinner">
+      {% for slideshow in slideshow_images %}
+      <div class="carousel-item {% if forloop.counter == 1 %} active {% endif %}" data-bs-interval="2500">
+        <img src="{{slideshow.image_file.url}}" class="d-block w-100 seasonChangeImg" alt="..." />
+      </div>
+      {% endfor %}
+    </div>
+    <button class="carousel-control-prev" type="button" data-bs-target="#firstCarousel" data-bs-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Previous</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#firstCarousel" data-bs-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Next</span>
+    </button>
+  </div>
+</div>
+<!-- end of first slideshow -->
+<!-- start of seasons -->
+<div class="container-fluid" id="seasons">
+  <div class="row">
+    <div class="col-3 seasonCol">
+      <a href="../SPRING" id="SUMMER" data-season = 'SUMMER'>
+        <div class="card">
+          <img src="{% static 'media/icons/spring.jpg' %}" class="card-img" alt="spring" />
+          <div class="card-img-overlay" >
+            <h5 class="spring-title hide">Spring</h5>
+          </div>
+        </div>
+      </a>
+    </div>
+    <div class="col-3 seasonCol">
+      <a href="../SUMMER">
+        <div class="card">
+          <img src="{% static 'media/icons/summer.jpg' %}" class="card-img" alt="summer" />
+          <div class="card-img-overlay">
+            <h5 class="summer-title hide">Summer</h5>
+          </div>
+        </div>
+      </a>
+    </div>
+    <div class="col-3 seasonCol">
+      <a href="../AUTUMN">
+        <div class="card">
+          <img src="{% static 'media/icons/autumn.jpg' %}" class="card-img" alt="autumn" />
+          <div class="card-img-overlay">
+            <h5 class="autumn-title hide">Autumn</h5>
+          </div>
+        </div>
+      </a>
+    </div>
+    <div class="col-3 seasonCol">
+      <a href="../WINTER">
+        <div class="card">
+          <img src="{% static 'media/icons/winter.jpg' %}" class="card-img" alt="winter" />
+          <div class="card-img-overlay">
+            <h5 class="winter-title hide">Winter</h5>
+          </div>
+        </div>
+      </a>
+    </div>
+  </div>
+</div>
+<!-- end of seasons -->
+<!-- start of woman section -->
+<div class="container-fluid" id="womenSection">
+  <div class="row">
+    <div class="col-12 col-lg-6 sectionDiv">
+      <div id="womenCarousel" class="carousel slide carousel-fade personCarousel" data-bs-ride="carousel">
+        <div class="carousel-inner" id="womenCarouselinner">
+          {% for image in women_images|slice:'10' %}
+          <div class="carousel-item {% if forloop.counter == 1 %} active {% endif %}" data-bs-interval="3500">
+            <a href="item/{{image.product_id}}">
+              <img src="{{image.product_image.url}}" class="d-block w-100" alt="..." />
+            </a>
+          </div>
+          {% endfor %}
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#womenCarousel" data-bs-slide="prev">
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#womenCarousel" data-bs-slide="next">
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Next</span>
+        </button>
+      </div>
+    </div>
+    <div class="col-12 col-lg-6 sectionDiv2">
+      <div class="row">
+        {% for product in women_products|slice:"6" %}
+        <div class="col-4 categoryCard">
+          <a href="../items/{{ slideshow_images.0.image_season}}/{{product.product_gender}}/{{product.product_type_id}}/product_brand_id"
+            ><div class="card text-primary">
+              <img class="card-img" src="{{product.product_image.url}}" alt="Card image" />
+              <div class="card-img-overlay">
+                <h5 class="card-title hide">{{product.product_type}}</h5>
+              </div>
+            </div>
+          </a>
+        </div>
+        {% endfor %}
+      </div>
+      
+      <div class="row">
+        <div class="col-12">
+          <a href="items/{{ slideshow_images.0.image_season}}/WOMAN/product_type_id/product_brand_id" class="btn btn-outline-primary">See all</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- end of woman section -->
+<!-- start of sales section -->
+<div class="containter-fluid" id="salesSection"  style="margin-top: 80px;">
+  <div class="row">
+    <div class="col-12 multipleCarousel">
+      <div class="text-center"><h3>Latest arrivals</h3></div>
+      <div class="owl-carousel owl-theme">
+        <!-- <div class="owlDiv box">
+          <div class="ribbon ribbon-top-left">
+            <span>Sale</span>
+          </div>
+          <img src="" alt="..." />
+        </div> -->
+        {% for i in latest %}
+        <div class="owlDiv"><a href="../item/{{i.product_id}}"><img src="{{ i.product_image.url }}" alt="..." /></a></div>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+</div>
+<!-- end of sales section -->
+<!-- start of men section -->
+<div class="container-fluid" id="menSection">
+  <div class="row">
+    <div class="col-12 col-lg-6 sectionDiv2">
+      <div class="row">
+        {% for product in men_products|slice:"6" %}
+        <div class="col-4 categoryCard">
+          <a href="../items/{{ slideshow_images.0.image_season}}/{{product.product_gender}}/{{product.product_type_id}}/product_brand_id">
+            <div class="card text-black">
+              <img class="card-img" src="{{product.product_image.url}}" alt="Card image" />
+              <div class="card-img-overlay">
+                <h5 class="card-title hide">{{product.product_type}}</h5>
+              </div>
+            </div>
+          </a>
+        </div>
+        {% endfor %}
+      </div>
+      <div class="row">
+        <div class="col-12">
+          <a href="items/{{ slideshow_images.0.image_season}}/MAN/product_type_id/product_brand_id" class="btn btn-outline-primary">See all</a>
+        </div>
+      </div>
+    </div>
+    <div class="col-12 col-lg-6 sectionDiv">
+      <div id="menCarousel" class="carousel slide carousel-fade personCarousel" data-bs-ride="carousel">
+        <div class="carousel-inner" id="menCarouselinner">
+          {% for image in men_images|slice:'10' %}
+          <div class="carousel-item {% if forloop.counter == 1 %} active {% endif %}" data-bs-interval="3500">
+            <a href="item/{{image.product_id}}">
+              <img src="{{image.product_image.url}}" class="d-block w-100" alt="..." />
+            </a>
+          </div>
+          {% endfor %}
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#menCarousel" data-bs-slide="prev">
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#menCarousel" data-bs-slide="next">
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Next</span>
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- end of men section -->
+<!-- start of brands section -->
+<div class="containter-fluid" id="brandSection">
+  <div class="row">
+    <div class="col-12">
+      <div class="owl-carousel owl-theme">
+        {% for brand in brand_images %}
+        <div class="owlDiv img-responsive"><a href="../items/product_season/product_gender/product_type_id/{{brand.brand_id}}"><img src="{{brand.brand_image.url}}" alt="..." /></a></div>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+</div>
+<!-- end of brands section -->
+<!-- start of kids section -->
+<div class="container-fluid" id="kidsSection">
+  <div class="row">
+    <div class="col-12 col-lg-6 sectionDiv">
+      <div id="kidsCarousel" class="carousel slide carousel-fade personCarousel" data-bs-ride="carousel">
+        <div class="carousel-inner" id="kidsCarouselinner">
+          {% for image in kid_images|slice:'10' %}
+          <div class="carousel-item {% if forloop.counter == 1 %} active {% endif %}" data-bs-interval="3500">
+            <a href="item/{{image.product_id}}">
+              <img src="{{image.product_image.url}}" class="d-block w-100" alt="..." />
+            </a>
+          </div>
+          {% endfor %}
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#kidsCarousel" data-bs-slide="prev">
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#kidsCarousel" data-bs-slide="next">
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Next</span>
+        </button>
+      </div>
+    </div>
+    <div class="col-12 col-lg-6 sectionDiv2">
+      <div class="row">
+        {% for product in kids_products|slice:"6" %}
+        <div class="col-4 categoryCard">
+          <a href="../items/{{ slideshow_images.0.image_season}}/{{product.product_gender}}/{{product.product_type_id}}/product_brand_id">
+            <div class="card text-black">
+              <img class="card-img" src="{{product.product_image.url}}" alt="Card image" />
+              <div class="card-img-overlay">
+                <h5 class="card-title hide">{{product.product_type}}</h5>
+              </div>
+            </div>
+          </a>
+        </div>
+        {% endfor %}
+      </div>
+      <div class="row">
+        <div class="col-12">
+          <a href="items/{{ slideshow_images.0.image_season}}/KID/product_type_id/product_brand_id" class="btn btn-outline-primary">See all</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- end of kids section -->
+
+{% endblock %}

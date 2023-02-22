@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+{% load static %}
+
+<!-- start of navbar -->
+<nav class="navbar navbar-expand-lg navbarmenu">
+  <div class="container-fluid fixed-top" id="navbar1">
+    <a class="navbar-brand" href="{% url 'home' %}"><img src="{% static 'media/icons/dengu_logo.png' %}" alt="logo" /></a>
+    <button
+      class="navbar-toggler"
+      type="button"
+      data-bs-toggle="collapse"
+      data-bs-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+    >
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item dropdown topmenu">
+          <a class="nav-link topmenuItem" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"> Seasons </a>
+          <ul class="dropdown-menu">
+            <li>
+              <a class="dropdown-item" href="../../../../items/SPRING/product_gender/product_type_id/product_brand_id">Spring</a>
+            </li>
+            <li>
+              <a class="dropdown-item" href="../../../../items/SUMMER/product_gender/product_type_id/product_brand_id">Summer</a>
+            </li>
+            <li>
+              <a class="dropdown-item" href="../../../../items/AUTUMN/product_gender/product_type_id/product_brand_id">Autumn</a>
+            </li>
+            <li>
+              <a class="dropdown-item" href="../../../../items/WINTER/product_gender/product_type_id/product_brand_id">Winter</a>
+            </li>
+          </ul>
+        </li>
+        <li class="nav-item dropdown topmenu">
+          <a class="nav-link topmenuItem" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"> Men </a>
+          <ul class="dropdown-menu">
+            {% for category in men_categories %}
+            <li>
+              <a class="dropdown-item" href="../../../../items/product_season/{{category.product_gender}}/{{category.product_type_id}}/product_brand_id">{{ category.product_type }}</a>
+            </li>
+            {% endfor %}
+          </ul>
+        </li>
+        <li class="nav-item dropdown topmenu">
+          <a class="nav-link topmenuItem" role="button" data-bs-toggle="dropdown" aria-expanded="false"> Women </a>
+          <ul class="dropdown-menu">
+            {% for category in women_categories %}
+            <li>
+              <a class="dropdown-item" href="../../../../items/product_season/{{category.product_gender}}/{{category.product_type_id}}/product_brand_id">{{ category.product_type }}</a>
+            </li>
+            {% endfor %}
+          </ul>
+        </li>
+        <li class="nav-item dropdown topmenu">
+          <a class="nav-link topmenuItem" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"> Kids </a>
+          <ul class="dropdown-menu">
+            {% for category in kids_categories %}
+            <li>
+              <a class="dropdown-item" href="../../../../items/product_season/{{category.product_gender}}/{{category.product_type_id}}/product_brand_id">{{ category.product_type }}</a>
+            </li>
+            {% endfor %}
+          </ul>
+        </li>
+        <li class="nav-item dropdown topmenu">
+          <a class="nav-link topmenuItem" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"> Brands </a>
+          <ul class="dropdown-menu">
+            {% for brand in brands %}
+            <li><a class="dropdown-item" href="../../../../items/product_season/product_gender/product_type_id/{{brand.brand_id}}">{{brand}}</a></li>
+            {% endfor %}
+          </ul>
+        </li>
+      </ul>
+      <form class="d-flex" role="search" method="GET" action="{% url 'search' %}">
+        {% csrf_token %}
+        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" name="searchBar" id="searchBar" required="required"/>
+        <button class="btn btn-outline-primary me-2" type="submit">
+          <i class="fa-solid fa-magnifying-glass"></i>
+        </button>
+        {% if user.is_authenticated %}
+        <a class="btn btn-outline-primary me-2" href="{% url 'cart' %}" style="display: flex; flex-direction: row; justify-content: center; align-items: center">
+          <i class="fa-solid fa-cart-shopping" style="font-size: 20px"></i><span id="cartCount" class="noFont">{{numItems}}</span></a>
+        <div class="dropdown d-flex ">
+          <button class="btn btn-outline-primary dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <i class="fa-solid fa-user"></i>
+          </button>
+          <div class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownMenuButton">
+            <a class="dropdown-item" href="/profile" style="text-transform: capitalize">{{ user }}</a>
+            {% if user.is_superuser %}
+            <a class="dropdown-item" href="/admin/" target="_blank" style="text-transform: capitalize">Admin</a>
+            {% endif %}
+            <a class="dropdown-item" href="{% url 'logout_user' %}"> Logout </a>
+          </div>
+        </div>
+        {% else %}
+        <a class="btn btn-outline-primary me-2" type="submit" href="{% url 'login_user' %}"> Login </a>
+        {% endif %}
+      </form>
+    </div>
+  </div>
+</nav>
+{{ redirect_to_login_immediately }}
+
+<!-- end of navbar -->
